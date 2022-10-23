@@ -1,0 +1,371 @@
+@import "theme.scss";
+@import "bootstrap.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;800&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+
+$fast: 150ms;
+
+.material-icons {
+  align-self: center;
+  line-height: 1em;
+  text-transform: lowercase !important;
+}
+
+@mixin color-modifiers($attribute) {
+  @each $name, $hex in $colors {
+    &-#{"" + $name} {
+      #{$attribute}: $hex;
+    }
+  }
+}
+
+@mixin dark-color-modifiers($attribute) {
+  @each $name, $hex in $colors {
+    &-#{"" + $name} {
+      #{$attribute}: darken($hex, 5%);
+    }
+  }
+}
+
+@mixin btn-modifiers($co, $bg, $bo, $br) {
+  @each $name, $hex in $colors {
+    &-#{"" + $name} {
+      #{$bg}: $hex;
+      #{$co}: $white;
+      #{$bo}: 1px solid $hex;
+
+      &:hover {
+        #{$br}: 5px;
+        #{$bg}: $white;
+        #{$co}: $hex;
+        #{$bo}: 1px solid $hex;
+      }
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+html,
+body {
+  overflow: auto;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: $light;
+  margin: 0;
+}
+
+@media print {
+  body {
+    width: 21cm;
+    height: 29.7cm;
+    margin: 10mm;
+  }
+}
+
+.text {
+  @include color-modifiers($attribute: "color");
+}
+
+// .bg {
+//   @include color-modifiers($attribute: "background");
+// }
+
+.bg-darken {
+  @include dark-color-modifiers($attribute: "background");
+}
+
+.border {
+  @include color-modifiers($attribute: "border-color");
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  padding: 1em;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+
+  background: $white;
+  border: 1px solid $green;
+  color: $green;
+  transition: (background $fast ease-out, border $fast ease-out, color $fast ease-out, border-radius $fast ease-out);
+  line-height: 1;
+  &:hover {
+    background: $green;
+    border: 1px solid $light;
+    border-radius: 5px;
+    color: $light;
+  }
+}
+
+.search-box {
+  padding: 1em 0;
+  margin: 0.5em 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn-lg {
+  padding: 1em;
+}
+
+.btn.btn {
+  @include btn-modifiers($co: "color", $bg: "background", $bo: "border", $br: "border-radius");
+}
+
+form {
+  padding: 1em;
+  margin: 1em 0;
+  text-align: center;
+  label {
+    font-weight: 500;
+    width: 100%;
+    margin-top: 0.25em;
+  }
+  input {
+    text-align: center;
+    padding: 0.5em 0.5em;
+    line-height: 2em;
+    margin: 0.5em 0em 1.5em 0;
+    width: 90%;
+  }
+}
+
+.shadow {
+  box-shadow: 0 0 8px #10101060;
+}
+
+.shadow-sm {
+  box-shadow: 0 0 3px #10101060;
+}
+
+.sidebar-container {
+  min-height: 100vh;
+}
+
+.column-nav {
+  .links {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    span {
+      user-select: none;
+    }
+    .dropdown-active {
+      color: gold;
+    }
+    a {
+      display: flex;
+      padding: 0.5em;
+      margin: 0.25em 0;
+      line-height: 1.5em;
+      color: white;
+      text-decoration: none;
+      transition: (background 200ms ease-out, box-shadow 200ms ease-out, padding 200ms ease-out, color 200ms ease-out);
+
+      &:hover,
+      &:active {
+        background: rgba(255, 255, 255, 0.123);
+        padding: 0.65em 0.5em;
+        box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.466);
+      }
+      &.router-link-exact-active {
+        background: rgba(255, 255, 255, 0.123);
+        padding: 0.65em 0.5em;
+        box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.466);
+        color: gold;
+      }
+    }
+
+    .material-icons {
+      padding-right: 0.25em;
+    }
+  }
+}
+
+.pre-line {
+  white-space: pre-line;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+::selection {
+  color: $dark;
+  background: rgba($secondary, 0.5);
+}
+
+.please-wait {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.smaller {
+  font-size: 0.7em !important;
+}
+
+.small {
+  font-size: 0.9em !important;
+ 
+}
+
+.big {
+  font-size: 1.2em !important;
+}
+
+.bigger {
+  font-size: 1.6em !important;
+}
+
+.text-decoration-none,
+.tdn {
+  text-decoration: none;
+}
+
+.text-uppercase,
+.uc {
+  text-transform: uppercase;
+}
+
+.text-capitalize,
+.capitalize {
+  text-transform: capitalize;
+}
+
+.f-end {
+  float: right;
+}
+
+.f-start {
+  float: left;
+}
+
+.align-center {
+  align-self: center;
+  display: inline-flex;
+}
+
+.rounded,
+fieldset {
+  border-radius: 5px;
+}
+
+.bordered {
+  border: 1px solid rgb(184, 191, 211);
+}
+
+.no-select {
+  user-select: none;
+}
+
+form fieldset {
+  padding: 1em 2em;
+
+  label {
+    width: 100%;
+    letter-spacing: 0.1em;
+  }
+
+  select,
+  input {
+    width: 100%;
+    letter-spacing: 0.1em;
+    padding: 0.3em 0;
+    margin: 1em 0;
+
+    option {
+      text-align: center;
+    }
+  }
+
+  hr {
+    color: white;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+table.table {
+  vertical-align: middle;
+}
+
+hr {
+  border: 0;
+  overflow: visible; /* For IE */
+  background-color: rgba(0, 0, 0, 0) !important;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+hr.light {
+  border: 0;
+  overflow: visible; /* For IE */
+  background-color: rgba(0, 0, 0, 0) !important;
+  height: 1px;
+  // background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255, 1), rgba(0, 0, 0, 0));
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
